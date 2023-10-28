@@ -26,7 +26,6 @@ export const Clima = () => {
     }
 
     const handleKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
-        // Faça algo com o evento de teclado aqui
         if (event.key === 'Enter') {
             getClima();
         }
