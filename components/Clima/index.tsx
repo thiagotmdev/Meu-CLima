@@ -17,7 +17,7 @@ export const Clima = () => {
     const [speedWind, setSpeedWind] = useState(0);
     const [humidity, setHumidity] = useState(0);
     const [icon, setIcon] = useState('');
-    const [description, setDescription] = useState(0);
+    const [description, setDescription] = useState('-----');
 
 
     const handleInputCidade = (event: React.ChangeEvent<HTMLInputElement>) => {
