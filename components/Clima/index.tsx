@@ -1,10 +1,9 @@
 import style from './Clima.module.css';
 import { useState } from "react";
+import React, { KeyboardEvent } from 'react';
 import axios from 'axios';
-const key = '8415e5281cbcc981e1a003b3f9ddb002';
 import Image from 'next/image';
 import loupe from '../../src/icons/loupe.png';
-import sun from '../../src/images/sun.png';
 import wind from '../../src/icons/wind_2.png';
 import press from '../../src/icons/barometer.png';
 import hum from '../../src/icons/humidity.png';
@@ -17,36 +16,57 @@ export const Clima = () => {
     const [pressure, setPressure] = useState(0);
     const [speedWind, setSpeedWind] = useState(0);
     const [humidity, setHumidity] = useState(0);
+    const [icon, setIcon] = useState('');
+    const [description, setDescription] = useState(0);
 
 
     const handleInputCidade = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCidade(event.target.value);
+
     }
+
+    const handleKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
+        // Faça algo com o evento de teclado aqui
+        if (event.key === 'Enter') {
+            getClima();
+        }
+    }
+
 
     const getClima = async () => {
 
-        if (cidade) {
-            const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&units=metric&lang=pt_br&appid=${key}`);
+        try {
+            if (cidade) {
+                const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cidade}&units=metric&lang=pt_br&appid=${process.env.customKey}`);
 
-            if (response.data) {
-                setCityName(response.data.name);
-                setCountry(response.data.sys.country);
-                setTemp(parseInt(response.data.main.temp));
-                setSpeedWind(parseInt(response.data.wind.speed));
-                setPressure(response.data.main.pressure);
-                setHumidity(response.data.main.humidity);
+                if (response.data) {
+                    setCityName(response.data.name);
+                    setCountry(response.data.sys.country);
+                    setTemp(parseInt(response.data.main.temp));
+                    setSpeedWind(parseInt(response.data.wind.speed));
+                    setPressure(response.data.main.pressure);
+                    setHumidity(response.data.main.humidity);
+                    setIcon(response.data.weather[0].icon);
+                    setDescription(response.data.weather[0].description);
+
+                }
+            } else {
+                alert("Informe o nome da cidade");
             }
-        }else{
-            alert("Informe o nome da cidade");
+        } catch (error) {
+            alert("Ocorreu algum erro!");
+            console.log(error);
         }
-
     }
+
+
+
     return (
         <>
             <div className={style.container}>
                 <div className={style.search}>
 
-                    <input type="text" className={style.search_input} onChange={handleInputCidade} value={cidade} placeholder='Digite aqui a sua cidade, se internacional digite em inglês' />
+                    <input type="text" className={style.search_input} id='search_input' onChange={handleInputCidade} onKeyUp={handleKeyUp} value={cidade} placeholder='Digite aqui a sua cidade, se internacional digite em inglês' />
                     <button type='submit' onClick={getClima}><Image src={loupe} alt='Icone de uma lupa' /></button>
 
                 </div>
@@ -54,8 +74,12 @@ export const Clima = () => {
                     <div className={style.stage_int_1}>
                         <div className={style.city}>{cityName}</div>
                         <div className={style.weather}>
-                            <Image src={sun} alt='Icone do tempo' />
-                            <span className={style.tempeture}>{temp} ° Graus</span>
+                            <img src={`${!icon ? 'sun.png' : `https://openweathermap.org/img/wn/${icon}.png`}`} width={182} height={182} alt={`Icone de tempo ${description}`} />
+
+                            <div className={style.container_condition}>
+                                <span className={style.tempeture}>{temp} ° Graus</span> <br />
+                                <span className={style.weather_condition}>{description}</span>
+                            </div>
                         </div>
                     </div>
                     <div className={style.stage_int_2}>
@@ -68,4 +92,6 @@ export const Clima = () => {
             </div>
         </>
     )
+
+
 }

@@ -81,11 +81,21 @@
   margin-top: 120px;
 }
 
-.weather img {
+.weather img{
+  border: 1px solid #FFF;
+  box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 30px;
+}
+
+.container_condition{
+  margin-left: 50px;
+}
+
+/* .weather img {
   width: 150px;
   height: 150px;
   padding: 10px;
-}
+} */
 
 .tempeture {
   display: flex;
@@ -98,6 +108,17 @@
   font-weight: bold;
   color: #FFFFFF;
   text-shadow: 2px 2px #000000;
+}
+
+.weather_condition{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-shadow: 2px 2px #000000;
+  text-transform: capitalize;
 }
 
 .stage_int_2 {
