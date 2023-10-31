@@ -1,13 +1,13 @@
 .container {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   background-image: url('../images/Seasons.webp');
-  background-position: center;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 }
 
@@ -19,4 +19,28 @@
   margin-top: -40px;
   font-size: 42px;
   text-shadow: 2px 2px #000000;
+}
+
+@media (max-width: 765px) {
+  .container {
+    width: 765px;
+    height: auto;    
+  }
+
+  .title{
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 600px){
+
+  .container{
+    width: 100%;
+    height: auto;
+  }
+  .title{
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+  }
 }
