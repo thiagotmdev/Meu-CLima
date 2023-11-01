@@ -65,7 +65,7 @@ export const Clima = () => {
             <div className={style.container}>
                 <div className={style.search}>
 
-                    <input type="text" className={style.search_input} id='search_input' onChange={handleInputCidade} onKeyUp={handleKeyUp} value={cidade} placeholder='Digite aqui a sua cidade, se internacional digite em inglês' />
+                    <input type="text" className={style.search_input} id='search_input' onChange={handleInputCidade} onKeyUp={handleKeyUp} value={cidade} placeholder='Digite aqui a sua cidade' />
                     <button type='submit' onClick={getClima}><Image src={loupe} alt='Icone de uma lupa' /></button>
 
                 </div>
