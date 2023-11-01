@@ -209,7 +209,7 @@
 
   .stage{
     flex-direction: column;
-    width: 400px;
+    width: 350px;
     height: auto;
     margin-top: 20px;
   }
@@ -217,7 +217,7 @@
   .stage_int_1{
     justify-content: center;
     align-items: center;
-    width: 390px;
+    width: 320px;
   }
 
   .stage_int_2{display: flex;
@@ -226,11 +226,16 @@
     align-items: center;
     text-align: center;
     margin-top: 20px;
-    width: 390px;
+    width: 320px;
   }
 
   .search{
-    width: 390px;
+    width: 320px;
     margin-bottom: 50px;
+  }
+
+  .weather img{
+    width: 120px;
+    height: 120px;
   }
 }
