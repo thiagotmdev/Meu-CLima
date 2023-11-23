@@ -9,7 +9,7 @@ export default function Home() {
     <>
     <Head>
       <title>Meu Clima</title>
-      <meta name="author" content="Thiago Mendes - Arckmake Studio"/>
+      <meta name="author" content="Thiago Mendes - Archmake Studio"/>
       <meta name="keywords" content="HTML, CSS, JavaScript, NextJS, ReactJS, Axios"/>
       <meta name="description" content="Aplicação feita em NextJS, que mostra os dados do clima no dia na cidade pesquisada" />
       <meta charSet="UTF-8"/>
